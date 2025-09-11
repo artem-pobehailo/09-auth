@@ -1,4 +1,4 @@
-import { fetchTags } from "@/lib/api";
+import { fetchTags } from "@/lib/api/serverApi";
 import SidebarNotes from "./SidebarNotes";
 
 export default async function DefaultSidebar() {

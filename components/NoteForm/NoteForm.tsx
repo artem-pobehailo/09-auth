@@ -2,10 +2,11 @@
 import { useRouter } from "next/navigation";
 
 import css from "./NoteForm.module.css";
-import { addNote } from "@/lib/api";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NewNoteData } from "@/types/note";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
+import { addNote } from "@/lib/api/clientApi";
 
 interface NoteFormProps {
   tags: string[];

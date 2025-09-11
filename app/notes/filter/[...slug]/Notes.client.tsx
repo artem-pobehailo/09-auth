@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useDebounce } from "use-debounce";
 import Link from "next/link";
-import { fetchNotes, FetchNotesResponse } from "@/lib/api";
+
 import css from "./NotesPage.module.css";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import NoteList from "@/components/NoteList/NoteList";
+import { fetchNotes, FetchNotesResponse } from "@/lib/api/serverApi";
 
 interface Props {
   tag?: string;
