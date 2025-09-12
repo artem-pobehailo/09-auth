@@ -1,6 +1,21 @@
 import Link from "next/link";
 import { getServerMe } from "@/lib/api/serverApi";
 import css from "./ProfilePage.module.css";
+import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile – NoteHub",
+  description: "View your profile and manage your account in NoteHub.",
+  openGraph: {
+    title: "Profile – NoteHub",
+    description: "View your profile and manage your account in NoteHub.",
+    url: "/profile",
+    images: [],
+    siteName: "NoteHub",
+    type: "profile",
+  },
+};
 
 const Profile = async () => {
   const user = await getServerMe();
@@ -14,8 +29,8 @@ const Profile = async () => {
           </Link>
         </div>
         <div className={css.avatarWrapper}>
-          <img
-            src="/avatar.png"
+          <Image
+            src={user.avatar ?? "/avatar.png"}
             alt="User Avatar"
             width={120}
             height={120}
@@ -23,8 +38,8 @@ const Profile = async () => {
           />
         </div>
         <div className={css.profileInfo}>
-          <p>Username: your_username</p>
-          <p>Email: your_email@example.com</p>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
         </div>
       </div>
     </main>

@@ -2,7 +2,7 @@ import { nextServer } from "./api";
 
 import { User } from "../../types/user";
 import { NewNoteData, Note } from "@/types/note";
-import { FetchNotesResponse } from "@/types/FetchNotesResponse";
+import { FetchNotesResponse } from "@/types/fetchNotesResponse";
 
 type CheckSessionRequest = {
   success: boolean;
@@ -82,26 +82,26 @@ export const getSingleNote = async (id: string): Promise<Note> => {
   }
 };
 
-export const fetchTags = async (): Promise<string[]> => {
-  try {
-    const response = await nextServer.get("/notes", {
-      params: { page: 1, perPage: 20 },
-    });
+// export const fetchTags = async (): Promise<string[]> => {
+//   try {
+//     const response = await nextServer.get("/notes", {
+//       params: { page: 1, perPage: 20 },
+//     });
 
-    const data = response.data;
-    const notes = Array.isArray(data) ? data : data.notes;
-    const tagsSet = new Set<string>();
+//     const data = response.data;
+//     const notes = Array.isArray(data) ? data : data.notes;
+//     const tagsSet = new Set<string>();
 
-    notes.forEach((note: { tag?: string }) => {
-      if (note.tag) tagsSet.add(note.tag);
-    });
+//     notes.forEach((note: { tag?: string }) => {
+//       if (note.tag) tagsSet.add(note.tag);
+//     });
 
-    return ["All", ...Array.from(tagsSet)];
-  } catch (error) {
-    console.error("Fetch tags failed:", error);
-    return ["All"];
-  }
-};
+//     return ["All", ...Array.from(tagsSet)];
+//   } catch (error) {
+//     console.error("Fetch tags failed:", error);
+//     return ["All"];
+//   }
+// };
 
 export const register = async (data: RegisterRequest) => {
   const res = await nextServer.post<User>("/auth/register", data);
@@ -124,9 +124,13 @@ export const getMe = async () => {
   const res = await nextServer.get<User>("/users/me");
   return res.data;
 };
+export type UpdateMePayload = {
+  username?: string;
+  email?: string;
+};
 
-export const updateMe = async (): Promise<User> => {
-  const res = await nextServer.patch<User>("/users/me");
+export const updateMe = async (payload: UpdateMePayload): Promise<User> => {
+  const res = await nextServer.patch<User>("/users/me", payload);
   return res.data;
 };
 

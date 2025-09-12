@@ -11,7 +11,8 @@ import Pagination from "@/components/Pagination/Pagination";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import NoteList from "@/components/NoteList/NoteList";
-import { fetchNotes, FetchNotesResponse } from "@/lib/api/serverApi";
+import { FetchNotesResponse } from "@/types/fetchNotesResponse";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 interface Props {
   tag?: string;

@@ -1,9 +1,9 @@
 "use client";
 
+import { getSingleNote } from "@/lib/api/serverApi";
 import css from "./NoteDetails.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { getSingleNote } from "@/lib/api/api";
 
 export default function NoteDetailsClient() {
   const { id } = useParams<{ id: string }>();

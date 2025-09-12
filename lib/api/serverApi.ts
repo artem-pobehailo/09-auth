@@ -2,8 +2,9 @@ import { nextServer } from "./api";
 
 import { cookies } from "next/headers";
 import { User } from "../../types/user";
-import { FetchNotesResponse } from "@/types/FetchNotesResponse";
+
 import { Note } from "@/types/note";
+import { FetchNotesResponse } from "@/types/fetchNotesResponse";
 
 export const fetchNotes = async (
   search?: string,
@@ -86,28 +87,28 @@ export const getSingleNote = async (id: string): Promise<Note> => {
   }
 };
 
-// export const fetchTags = async (): Promise<string[]> => {
-//   try {
-//     const cookieStore = await cookies();
-//     const response = await nextServer.get("/notes", {
-//       params: { page: 1, perPage: 20 },
-//       headers: { Cookie: cookieStore.toString() },
-//     });
+export const fetchTags = async (): Promise<string[]> => {
+  try {
+    const cookieStore = cookies();
+    const response = await nextServer.get("/notes", {
+      params: { page: 1, perPage: 20 },
+      headers: { Cookie: cookieStore.toString() },
+    });
 
-//     const data = response.data;
-//     const notes = Array.isArray(data) ? data : data.notes;
-//     const tagsSet = new Set<string>();
+    const data = response.data;
+    const notes = Array.isArray(data) ? data : data.notes;
+    const tagsSet = new Set<string>();
 
-//     notes.forEach((note: { tag?: string }) => {
-//       if (note.tag) tagsSet.add(note.tag);
-//     });
+    notes.forEach((note: { tag?: string }) => {
+      if (note.tag) tagsSet.add(note.tag);
+    });
 
-//     return ["All", ...Array.from(tagsSet)];
-//   } catch (error) {
-//     console.error("Fetch tags failed:", error);
-//     return ["All"];
-//   }
-// };
+    return ["All", ...Array.from(tagsSet)];
+  } catch (error) {
+    console.error("Fetch tags failed:", error);
+    return ["All"];
+  }
+};
 
 // export const getUser = async () => {
 //   const cookieStore = await cookies();
