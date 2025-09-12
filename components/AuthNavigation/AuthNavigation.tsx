@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { logout } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
+import TagsMenu from "../TagsMenu/TagsMenu";
 
 export const AuthNavigation = () => {
   const { isAuthenticated, user } = useAuthStore();
@@ -34,6 +35,10 @@ export const AuthNavigation = () => {
         <button onClick={handleLogout} className={css.logoutButton}>
           Logout
         </button>
+      </li>
+
+      <li>
+        <TagsMenu />
       </li>
     </>
   ) : (

@@ -17,9 +17,9 @@ const Header = async () => {
 
           <AuthNavigation />
 
-          <li>
+          {/* <li>
             <TagsMenu />
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
