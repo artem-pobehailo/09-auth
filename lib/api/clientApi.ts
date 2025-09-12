@@ -73,7 +73,7 @@ export const addNote = async (noteData: NewNoteData): Promise<Note> => {
 
 export const getSingleNote = async (id: string): Promise<Note> => {
   try {
-    const res = await nextServer.get<Note>(`notes/${id}`, {});
+    const res = await nextServer.get<Note>(`/notes/${id}`);
     return res.data;
   } catch (error) {
     console.error(`Get note ${id} failed:`, error);
