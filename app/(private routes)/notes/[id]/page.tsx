@@ -6,8 +6,9 @@ import {
 } from "@tanstack/react-query";
 
 import { Metadata } from "next";
-import { getSingleNote } from "@/lib/api/clientApi";
+
 import NoteDetailsClient from "./NoteDetails.client";
+import { getSingleNote } from "@/lib/api/serverApi";
 
 interface NoteDetailsPageProps {
   params: Promise<{ id: string }>;
